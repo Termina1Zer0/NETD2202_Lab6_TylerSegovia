@@ -1,33 +1,24 @@
 ﻿Option Strict On
 Imports System.IO
 
-Public Class MDITextEditorForm
+Public Class MDIParentForm
 
 #Region "Variable and Constant Declaration"
-    Dim filename As String
+
 #End Region
 
 #Region "Functions and Subs"
     ''' <summary>
-    '''     Prepares the program for a new file
-    ''' </summary>
-    Sub NewFile()
-        txtEditText.Text() = ""
-        filename = ""
-        Me.Text = "Text Editor"
-    End Sub
-
-    ''' <summary>
     '''     Prompts the SaveFileDialog box to save a new file
     ''' </summary>
-    Sub SaveAs()
+    Private Sub SaveAs()
+        Dim activeForm As TextEditorForm = DirectCast(Me.ActiveMdiChild, TextEditorForm)
         SaveFileDialog.Filter = "TXT Files (*.txt)|*.txt"
         If SaveFileDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
             Try
                 Dim writer As New StreamWriter(SaveFileDialog.FileName)
-                writer.Write(txtEditText.Text())
-                filename = SaveFileDialog.FileName
-                Me.Text = Path.GetFileName(filename)
+                writer.Write(activeForm.txtEditText.Text())
+                activeForm.Text = SaveFileDialog.FileName
                 writer.Close()
             Catch ex As Exception
                 Console.WriteLine(ex.ToString())
@@ -38,33 +29,18 @@ Public Class MDITextEditorForm
     ''' <summary>
     '''     Overwrites the existing file with text
     ''' </summary>
-    Sub Save()
-        My.Computer.FileSystem.WriteAllText(filename, txtEditText.Text(), False)
-    End Sub
-
-    ''' <summary>
-    '''     Opens a new file
-    ''' </summary>
-    Sub Open()
-        If OpenFileDialog.ShowDialog() = DialogResult.OK Then
-            Try
-                Dim reader As New StreamReader(OpenFileDialog.FileName)
-                txtEditText.Text() = reader.ReadToEnd()
-                filename = OpenFileDialog.FileName
-                Me.Text = Path.GetFileName(filename)
-                reader.Close()
-            Catch ex As Exception
-                Console.WriteLine(ex.ToString())
-            End Try
-        End If
+    Private Sub Save()
+        Dim activeForm As TextEditorForm = DirectCast(Me.ActiveMdiChild, TextEditorForm)
+        My.Computer.FileSystem.WriteAllText(activeForm.Text, activeForm.txtEditText.Text, False)
     End Sub
 
     ''' <summary>
     '''     Copies selected text to clipboard
     ''' </summary>
-    Sub Copy()
+    Private Sub Copy()
+        Dim activeForm As TextEditorForm = DirectCast(Me.ActiveMdiChild, TextEditorForm)
         Try
-            My.Computer.Clipboard.SetText(txtEditText.SelectedText)
+            My.Computer.Clipboard.SetText(activeForm.txtEditText.SelectedText)
         Catch ex As Exception
             Console.WriteLine(ex.ToString())
         End Try
@@ -73,10 +49,11 @@ Public Class MDITextEditorForm
     ''' <summary>
     '''     Copies selected text to clipboard and deletes it from textbox
     ''' </summary>
-    Sub Cut()
+    Private Sub Cut()
+        Dim activeForm As TextEditorForm = DirectCast(Me.ActiveMdiChild, TextEditorForm)
         Try
-            My.Computer.Clipboard.SetText(txtEditText.SelectedText)
-            txtEditText.SelectedText = ""
+            My.Computer.Clipboard.SetText(activeForm.txtEditText.SelectedText)
+            activeForm.txtEditText.SelectedText = ""
         Catch ex As Exception
             Console.WriteLine(ex.ToString())
         End Try
@@ -85,9 +62,10 @@ Public Class MDITextEditorForm
     ''' <summary>
     '''     Retrieves text from clipboard and adds it to textbox
     ''' </summary>
-    Sub Paste()
+    Private Sub Paste()
+        Dim activeForm As TextEditorForm = DirectCast(Me.ActiveMdiChild, TextEditorForm)
         Try
-            txtEditText.SelectedText = My.Computer.Clipboard.GetText()
+            activeForm.txtEditText.SelectedText = My.Computer.Clipboard.GetText()
         Catch ex As Exception
             Console.WriteLine(ex.ToString())
         End Try
@@ -96,69 +74,31 @@ Public Class MDITextEditorForm
 
 #Region "Event Handlers"
     Private Sub mnuNew_Click(sender As Object, e As EventArgs) Handles mnuNew.Click
-        If My.Computer.FileSystem.FileExists(filename) = True Then      'Exists
-            If My.Computer.FileSystem.ReadAllText(filename) = txtEditText.Text() Then
-                NewFile()
-            Else
-                Dim result As Integer = MessageBox.Show("Do you want to save changes?", "Text Editor", MessageBoxButtons.YesNoCancel)
-                If result = DialogResult.Yes Then
-                    SaveAs()
-                    NewFile()
-                ElseIf result = DialogResult.No Then
-                    NewFile()
-                ElseIf result = DialogResult.Cancel Then
-                    'Do nothing
-                End If
-            End If
-        Else                                                            'Doesn't Exist
-            If txtEditText.Text() IsNot "" Then
-                Dim result As Integer = MessageBox.Show("Do you want to save changes?", "Text Editor", MessageBoxButtons.YesNoCancel)
-                If result = DialogResult.Yes Then
-                    SaveAs()
-                    NewFile()
-                ElseIf result = DialogResult.No Then
-                    NewFile()
-                ElseIf result = DialogResult.Cancel Then
-                    'Do nothing
-                End If
-            End If
-        End If
+        Dim newTextEditor As New TextEditorForm
+        newTextEditor.MdiParent = Me
+        newTextEditor.Show()
     End Sub
 
     Private Sub mnuOpen_Click(sender As Object, e As EventArgs) Handles mnuOpen.Click
-        If My.Computer.FileSystem.FileExists(filename) = True Then      'Exists
-            If My.Computer.FileSystem.ReadAllText(filename) = txtEditText.Text() Then
-                Open()
-            Else
-                Dim result As Integer = MessageBox.Show("Do you want to save changes?", "Text Editor", MessageBoxButtons.YesNoCancel)
-                If result = DialogResult.Yes Then
-                    SaveAs()
-                    Open()
-                ElseIf result = DialogResult.No Then
-                    Open()
-                ElseIf result = DialogResult.Cancel Then
-                    'Do nothing
-                End If
-            End If
-        Else                                                            'Doesn't Exist
-            If txtEditText.Text() IsNot "" Then
-                Dim result As Integer = MessageBox.Show("Do you want to save changes?", "Text Editor", MessageBoxButtons.YesNoCancel)
-                If result = DialogResult.Yes Then
-                    SaveAs()
-                    Open()
-                ElseIf result = DialogResult.No Then
-                    Open()
-                ElseIf result = DialogResult.Cancel Then
-                    'Do nothing
-                End If
-            Else
-                Open()
-            End If
+        Dim newTextEditor As New TextEditorForm
+        newTextEditor.MdiParent = Me
+
+        If OpenFileDialog.ShowDialog() = DialogResult.OK Then
+            Try
+                Dim reader As New StreamReader(OpenFileDialog.FileName)
+                newTextEditor.txtEditText.Text = reader.ReadToEnd
+                reader.Close()
+
+                newTextEditor.Show()
+                newTextEditor.Text = OpenFileDialog.FileName
+            Catch ex As Exception
+                Console.WriteLine(ex.ToString())
+            End Try
         End If
     End Sub
 
     Private Sub mnuSave_Click(sender As Object, e As EventArgs) Handles mnuSave.Click
-        If My.Computer.FileSystem.FileExists(filename) = True Then
+        If My.Computer.FileSystem.FileExists(ActiveForm.Text) = True Then
             Save()
         Else
             SaveAs()
@@ -170,66 +110,77 @@ Public Class MDITextEditorForm
     End Sub
 
     Private Sub mnuClose_Click(sender As Object, e As EventArgs) Handles mnuClose.Click
-        If My.Computer.FileSystem.FileExists(filename) = True Then      'Exists
-            If My.Computer.FileSystem.ReadAllText(filename) = txtEditText.Text() Then
-                Application.Exit()
+        Dim activeForm As TextEditorForm = DirectCast(Me.ActiveMdiChild, TextEditorForm)
+        If My.Computer.FileSystem.FileExists(activeForm.Text) = True Then      'Exists
+            If My.Computer.FileSystem.ReadAllText(activeForm.Text) = activeForm.txtEditText.Text Then
+                activeForm.Close()
             Else
-                Dim result As Integer = MessageBox.Show("Do you want to save changes?", "Text Editor", MessageBoxButtons.YesNoCancel)
+                Dim result As Integer = MessageBox.Show("Do you want to save changes?", activeForm.Text, MessageBoxButtons.YesNoCancel)
                 If result = DialogResult.Yes Then
                     SaveAs()
-                    Application.Exit()
+                    activeForm.Close()
                 ElseIf result = DialogResult.No Then
-                    Application.Exit()
+                    activeForm.Close()
                 ElseIf result = DialogResult.Cancel Then
                     'Do nothing
                 End If
             End If
         Else                                                            'Doesn't Exist
-            If txtEditText.Text() IsNot "" Then
-                Dim result As Integer = MessageBox.Show("Do you want to save changes?", "Text Editor", MessageBoxButtons.YesNoCancel)
+            If activeForm.txtEditText.Text() IsNot "" Then
+                Dim result As Integer = MessageBox.Show("Do you want to save changes?", activeForm.Text, MessageBoxButtons.YesNoCancel)
                 If result = DialogResult.Yes Then
                     SaveAs()
-                    Application.Exit()
+                    activeForm.Close()
                 ElseIf result = DialogResult.No Then
-                    Application.Exit()
+                    activeForm.Close()
                 ElseIf result = DialogResult.Cancel Then
                     'Do nothing
                 End If
             Else
-                Application.Exit()
+                activeForm.Close()
             End If
         End If
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles mnuExit.Click
-        If My.Computer.FileSystem.FileExists(filename) = True Then      'Exists
-            If My.Computer.FileSystem.ReadAllText(filename) = txtEditText.Text() Then
-                Application.Exit()
-            Else
-                Dim result As Integer = MessageBox.Show("Do you want to save changes?", "Text Editor", MessageBoxButtons.YesNoCancel)
-                If result = DialogResult.Yes Then
-                    SaveAs()
-                    Application.Exit()
-                ElseIf result = DialogResult.No Then
-                    Application.Exit()
-                ElseIf result = DialogResult.Cancel Then
-                    'Do nothing
+        Dim exitCancelled As Boolean = False
+        Dim activeForm As TextEditorForm = DirectCast(Me.ActiveMdiChild, TextEditorForm)
+        If AverageUnitsShippedForm.Visible = True Then
+            AverageUnitsShippedForm.Close()
+        End If
+        For Each Child As TextEditorForm In MdiChildren.OfType(Of TextEditorForm)
+            If My.Computer.FileSystem.FileExists(activeForm.Text) = True Then      'Exists
+                If My.Computer.FileSystem.ReadAllText(activeForm.Text) = activeForm.txtEditText.Text Then
+                    activeForm.Close()
+                Else
+                    Dim result As Integer = MessageBox.Show("Do you want to save changes?", activeForm.Text, MessageBoxButtons.YesNoCancel)
+                    If result = DialogResult.Yes Then
+                        SaveAs()
+                        activeForm.Close()
+                    ElseIf result = DialogResult.No Then
+                        activeForm.Close()
+                    ElseIf result = DialogResult.Cancel Then
+                        exitCancelled = True
+                    End If
+                End If
+            Else                                                            'Doesn't Exist
+                If activeForm.txtEditText.Text() IsNot "" Then
+                    Dim result As Integer = MessageBox.Show("Do you want to save changes?", activeForm.Text, MessageBoxButtons.YesNoCancel)
+                    If result = DialogResult.Yes Then
+                        SaveAs()
+                        activeForm.Close()
+                    ElseIf result = DialogResult.No Then
+                        activeForm.Close()
+                    ElseIf result = DialogResult.Cancel Then
+                        exitCancelled = True
+                    End If
+                Else
+                    activeForm.Close()
                 End If
             End If
-        Else                                                            'Doesn't Exist
-            If txtEditText.Text() IsNot "" Then
-                Dim result As Integer = MessageBox.Show("Do you want to save changes?", "Text Editor", MessageBoxButtons.YesNoCancel)
-                If result = DialogResult.Yes Then
-                    SaveAs()
-                    Application.Exit()
-                ElseIf result = DialogResult.No Then
-                    Application.Exit()
-                ElseIf result = DialogResult.Cancel Then
-                    'Do nothing
-                End If
-            Else
-                Application.Exit()
-            End If
+        Next Child
+        If exitCancelled = False Then
+            Application.Exit()
         End If
     End Sub
 
@@ -249,6 +200,10 @@ Public Class MDITextEditorForm
         MessageBox.Show("NETD-2202" + Environment.NewLine + "Lab 5" + Environment.NewLine + "T.Segovia")
     End Sub
 
+    Private Sub mnuAverageUnitsShipped_Click(sender As Object, e As EventArgs) Handles mnuAverageUnitsShipped.Click
+        Dim newAverageUnitsShipped As New AverageUnitsShippedForm
+        newAverageUnitsShipped.MdiParent = Me
+        newAverageUnitsShipped.Show()
+    End Sub
 #End Region
-
 End Class

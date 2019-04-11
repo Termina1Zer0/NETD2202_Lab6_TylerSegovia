@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form2
+Partial Class TextEditorForm
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -37,14 +37,14 @@ Partial Class Form2
         Me.txtEditText.TabIndex = 5
         Me.txtEditText.Text = ""
         '
-        'Form2
+        'TextEditorForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.txtEditText)
-        Me.Name = "Form2"
-        Me.Text = "Form2"
+        Me.Name = "TextEditorForm"
+        Me.Text = "New Text File"
         Me.ResumeLayout(False)
 
     End Sub

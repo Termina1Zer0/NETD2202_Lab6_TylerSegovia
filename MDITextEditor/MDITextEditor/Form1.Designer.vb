@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class MDITextEditorForm
+Partial Class MDIParentForm
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -41,7 +41,16 @@ Partial Class MDITextEditorForm
         Me.mnuClose = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuEditorOptions = New System.Windows.Forms.MenuStrip()
         Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.txtEditText = New System.Windows.Forms.RichTextBox()
+        Me.StatusStrip = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.mnuWindows = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuCascade = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuTileHorizontal = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuTileVertical = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.mnuAverageUnitsShipped = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnuEditorOptions.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -52,7 +61,7 @@ Partial Class MDITextEditorForm
         'mnuAbout
         '
         Me.mnuAbout.Name = "mnuAbout"
-        Me.mnuAbout.Size = New System.Drawing.Size(125, 26)
+        Me.mnuAbout.Size = New System.Drawing.Size(216, 26)
         Me.mnuAbout.Text = "&About"
         '
         'mnuHelp
@@ -65,20 +74,23 @@ Partial Class MDITextEditorForm
         'mnuPaste
         '
         Me.mnuPaste.Name = "mnuPaste"
-        Me.mnuPaste.Size = New System.Drawing.Size(192, 26)
-        Me.mnuPaste.Text = "&Paste        Ctrl+V"
+        Me.mnuPaste.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
+        Me.mnuPaste.Size = New System.Drawing.Size(216, 26)
+        Me.mnuPaste.Text = "&Paste"
         '
         'mnuCut
         '
         Me.mnuCut.Name = "mnuCut"
-        Me.mnuCut.Size = New System.Drawing.Size(192, 26)
-        Me.mnuCut.Text = "Cu&t        Ctrl+X"
+        Me.mnuCut.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.X), System.Windows.Forms.Keys)
+        Me.mnuCut.Size = New System.Drawing.Size(216, 26)
+        Me.mnuCut.Text = "Cu&t"
         '
         'mnuCopy
         '
         Me.mnuCopy.Name = "mnuCopy"
-        Me.mnuCopy.Size = New System.Drawing.Size(192, 26)
-        Me.mnuCopy.Text = "&Copy        Ctrl+C"
+        Me.mnuCopy.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
+        Me.mnuCopy.Size = New System.Drawing.Size(216, 26)
+        Me.mnuCopy.Text = "&Copy"
         '
         'mnuEdit
         '
@@ -90,36 +102,39 @@ Partial Class MDITextEditorForm
         'mnuExit
         '
         Me.mnuExit.Name = "mnuExit"
-        Me.mnuExit.Size = New System.Drawing.Size(196, 26)
+        Me.mnuExit.Size = New System.Drawing.Size(216, 26)
         Me.mnuExit.Text = "E&xit"
         '
         'mnuSaveAs
         '
         Me.mnuSaveAs.Name = "mnuSaveAs"
-        Me.mnuSaveAs.Size = New System.Drawing.Size(196, 26)
+        Me.mnuSaveAs.Size = New System.Drawing.Size(216, 26)
         Me.mnuSaveAs.Text = "Save &As"
         '
         'mnuSave
         '
         Me.mnuSave.Name = "mnuSave"
-        Me.mnuSave.Size = New System.Drawing.Size(196, 26)
-        Me.mnuSave.Text = "&Save        Ctrl+S"
+        Me.mnuSave.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
+        Me.mnuSave.Size = New System.Drawing.Size(216, 26)
+        Me.mnuSave.Text = "&Save"
         '
         'mnuOpen
         '
         Me.mnuOpen.Name = "mnuOpen"
-        Me.mnuOpen.Size = New System.Drawing.Size(196, 26)
-        Me.mnuOpen.Text = "&Open        Ctrl+O"
+        Me.mnuOpen.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
+        Me.mnuOpen.Size = New System.Drawing.Size(216, 26)
+        Me.mnuOpen.Text = "&Open"
         '
         'mnuNew
         '
         Me.mnuNew.Name = "mnuNew"
-        Me.mnuNew.Size = New System.Drawing.Size(196, 26)
-        Me.mnuNew.Text = "&New        Ctrl+N"
+        Me.mnuNew.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
+        Me.mnuNew.Size = New System.Drawing.Size(216, 26)
+        Me.mnuNew.Text = "&New"
         '
         'mnuFile
         '
-        Me.mnuFile.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuNew, Me.mnuOpen, Me.mnuSave, Me.mnuSaveAs, Me.mnuClose, Me.mnuExit})
+        Me.mnuFile.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuNew, Me.mnuOpen, Me.ToolStripMenuItem1, Me.mnuSave, Me.mnuSaveAs, Me.ToolStripMenuItem2, Me.mnuClose, Me.mnuExit})
         Me.mnuFile.Name = "mnuFile"
         Me.mnuFile.Size = New System.Drawing.Size(44, 24)
         Me.mnuFile.Text = "&File"
@@ -127,16 +142,16 @@ Partial Class MDITextEditorForm
         'mnuClose
         '
         Me.mnuClose.Name = "mnuClose"
-        Me.mnuClose.Size = New System.Drawing.Size(196, 26)
+        Me.mnuClose.Size = New System.Drawing.Size(216, 26)
         Me.mnuClose.Text = "&Close"
         '
         'mnuEditorOptions
         '
         Me.mnuEditorOptions.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.mnuEditorOptions.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuFile, Me.mnuEdit, Me.mnuHelp})
+        Me.mnuEditorOptions.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuFile, Me.mnuEdit, Me.mnuWindows, Me.mnuHelp})
         Me.mnuEditorOptions.Location = New System.Drawing.Point(0, 0)
         Me.mnuEditorOptions.Name = "mnuEditorOptions"
-        Me.mnuEditorOptions.Size = New System.Drawing.Size(800, 28)
+        Me.mnuEditorOptions.Size = New System.Drawing.Size(1030, 28)
         Me.mnuEditorOptions.TabIndex = 3
         Me.mnuEditorOptions.Text = "MenuStrip1"
         '
@@ -146,29 +161,77 @@ Partial Class MDITextEditorForm
         Me.ContextMenuStrip.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip.Size = New System.Drawing.Size(61, 4)
         '
-        'txtEditText
+        'StatusStrip
         '
-        Me.txtEditText.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer))
-        Me.txtEditText.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtEditText.Font = New System.Drawing.Font("Lucida Sans Unicode", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtEditText.ForeColor = System.Drawing.Color.White
-        Me.txtEditText.Location = New System.Drawing.Point(0, 28)
-        Me.txtEditText.Name = "txtEditText"
-        Me.txtEditText.Size = New System.Drawing.Size(800, 422)
-        Me.txtEditText.TabIndex = 6
-        Me.txtEditText.Text = ""
+        Me.StatusStrip.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 575)
+        Me.StatusStrip.Name = "StatusStrip"
+        Me.StatusStrip.Size = New System.Drawing.Size(1030, 22)
+        Me.StatusStrip.TabIndex = 7
+        Me.StatusStrip.Text = "StatusStrip"
         '
-        'MDITextEditorForm
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(213, 6)
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(213, 6)
+        '
+        'mnuWindows
+        '
+        Me.mnuWindows.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuCascade, Me.mnuTileVertical, Me.mnuTileHorizontal, Me.ToolStripMenuItem3, Me.mnuAverageUnitsShipped, Me.ToolStripMenuItem4})
+        Me.mnuWindows.Name = "mnuWindows"
+        Me.mnuWindows.Size = New System.Drawing.Size(82, 24)
+        Me.mnuWindows.Text = "&Windows"
+        '
+        'mnuCascade
+        '
+        Me.mnuCascade.Name = "mnuCascade"
+        Me.mnuCascade.Size = New System.Drawing.Size(235, 26)
+        Me.mnuCascade.Text = "&Cascade"
+        '
+        'mnuTileHorizontal
+        '
+        Me.mnuTileHorizontal.Name = "mnuTileHorizontal"
+        Me.mnuTileHorizontal.Size = New System.Drawing.Size(235, 26)
+        Me.mnuTileHorizontal.Text = "Tile &Horizontal"
+        '
+        'mnuTileVertical
+        '
+        Me.mnuTileVertical.Name = "mnuTileVertical"
+        Me.mnuTileVertical.Size = New System.Drawing.Size(235, 26)
+        Me.mnuTileVertical.Text = "Tile &Vertical"
+        '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(232, 6)
+        '
+        'mnuAverageUnitsShipped
+        '
+        Me.mnuAverageUnitsShipped.Name = "mnuAverageUnitsShipped"
+        Me.mnuAverageUnitsShipped.Size = New System.Drawing.Size(235, 26)
+        Me.mnuAverageUnitsShipped.Text = "Average &Units Shipped"
+        '
+        'ToolStripMenuItem4
+        '
+        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(232, 6)
+        '
+        'MDIParentForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.txtEditText)
+        Me.ClientSize = New System.Drawing.Size(1030, 597)
+        Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.mnuEditorOptions)
         Me.IsMdiContainer = True
         Me.MainMenuStrip = Me.mnuEditorOptions
-        Me.Name = "MDITextEditorForm"
+        Me.Name = "MDIParentForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "MDI Text Editor"
         Me.mnuEditorOptions.ResumeLayout(False)
@@ -196,5 +259,14 @@ Partial Class MDITextEditorForm
     Friend WithEvents mnuClose As ToolStripMenuItem
     Friend WithEvents mnuEditorOptions As MenuStrip
     Friend WithEvents ContextMenuStrip As ContextMenuStrip
-    Friend WithEvents txtEditText As RichTextBox
+    Friend WithEvents StatusStrip As StatusStrip
+    Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
+    Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
+    Friend WithEvents mnuWindows As ToolStripMenuItem
+    Friend WithEvents mnuCascade As ToolStripMenuItem
+    Friend WithEvents mnuTileVertical As ToolStripMenuItem
+    Friend WithEvents mnuTileHorizontal As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
+    Friend WithEvents mnuAverageUnitsShipped As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem4 As ToolStripSeparator
 End Class
