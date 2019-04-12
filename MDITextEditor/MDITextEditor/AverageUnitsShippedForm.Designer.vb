@@ -42,7 +42,9 @@ Partial Class AverageUnitsShippedForm
         '
         'lblTotalAverage
         '
+        Me.lblTotalAverage.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer))
         Me.lblTotalAverage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblTotalAverage.ForeColor = System.Drawing.Color.White
         Me.lblTotalAverage.Location = New System.Drawing.Point(36, 327)
         Me.lblTotalAverage.Name = "lblTotalAverage"
         Me.lblTotalAverage.Size = New System.Drawing.Size(437, 23)
@@ -51,7 +53,9 @@ Partial Class AverageUnitsShippedForm
         '
         'lblEmployee3Average
         '
+        Me.lblEmployee3Average.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer))
         Me.lblEmployee3Average.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblEmployee3Average.ForeColor = System.Drawing.Color.White
         Me.lblEmployee3Average.Location = New System.Drawing.Point(338, 286)
         Me.lblEmployee3Average.Name = "lblEmployee3Average"
         Me.lblEmployee3Average.Size = New System.Drawing.Size(135, 23)
@@ -60,7 +64,9 @@ Partial Class AverageUnitsShippedForm
         '
         'lblEmployee2Average
         '
+        Me.lblEmployee2Average.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer))
         Me.lblEmployee2Average.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblEmployee2Average.ForeColor = System.Drawing.Color.White
         Me.lblEmployee2Average.Location = New System.Drawing.Point(187, 286)
         Me.lblEmployee2Average.Name = "lblEmployee2Average"
         Me.lblEmployee2Average.Size = New System.Drawing.Size(135, 23)
@@ -69,7 +75,9 @@ Partial Class AverageUnitsShippedForm
         '
         'lblEmployee1Average
         '
+        Me.lblEmployee1Average.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer))
         Me.lblEmployee1Average.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblEmployee1Average.ForeColor = System.Drawing.Color.White
         Me.lblEmployee1Average.Location = New System.Drawing.Point(36, 286)
         Me.lblEmployee1Average.Name = "lblEmployee1Average"
         Me.lblEmployee1Average.Size = New System.Drawing.Size(135, 23)
@@ -78,6 +86,8 @@ Partial Class AverageUnitsShippedForm
         '
         'txtEmployee3Display
         '
+        Me.txtEmployee3Display.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer))
+        Me.txtEmployee3Display.ForeColor = System.Drawing.Color.White
         Me.txtEmployee3Display.Location = New System.Drawing.Point(338, 125)
         Me.txtEmployee3Display.Multiline = True
         Me.txtEmployee3Display.Name = "txtEmployee3Display"
@@ -87,6 +97,8 @@ Partial Class AverageUnitsShippedForm
         '
         'txtEmployee2Display
         '
+        Me.txtEmployee2Display.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer))
+        Me.txtEmployee2Display.ForeColor = System.Drawing.Color.White
         Me.txtEmployee2Display.Location = New System.Drawing.Point(187, 125)
         Me.txtEmployee2Display.Multiline = True
         Me.txtEmployee2Display.Name = "txtEmployee2Display"
@@ -96,6 +108,8 @@ Partial Class AverageUnitsShippedForm
         '
         'txtEmployee1Display
         '
+        Me.txtEmployee1Display.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer))
+        Me.txtEmployee1Display.ForeColor = System.Drawing.Color.White
         Me.txtEmployee1Display.Location = New System.Drawing.Point(36, 125)
         Me.txtEmployee1Display.Multiline = True
         Me.txtEmployee1Display.Name = "txtEmployee1Display"
@@ -132,6 +146,8 @@ Partial Class AverageUnitsShippedForm
         '
         'txtUnitsInput
         '
+        Me.txtUnitsInput.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer))
+        Me.txtUnitsInput.ForeColor = System.Drawing.Color.White
         Me.txtUnitsInput.Location = New System.Drawing.Point(92, 54)
         Me.txtUnitsInput.Name = "txtUnitsInput"
         Me.txtUnitsInput.Size = New System.Drawing.Size(65, 22)
@@ -157,7 +173,6 @@ Partial Class AverageUnitsShippedForm
         '
         'btnExit
         '
-        Me.btnExit.BackColor = System.Drawing.Color.Red
         Me.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnExit.Location = New System.Drawing.Point(338, 372)
         Me.btnExit.Name = "btnExit"
@@ -168,7 +183,6 @@ Partial Class AverageUnitsShippedForm
         '
         'btnReset
         '
-        Me.btnReset.BackColor = System.Drawing.Color.Yellow
         Me.btnReset.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnReset.Location = New System.Drawing.Point(187, 372)
         Me.btnReset.Name = "btnReset"
@@ -179,7 +193,6 @@ Partial Class AverageUnitsShippedForm
         '
         'btnEnter
         '
-        Me.btnEnter.BackColor = System.Drawing.Color.Aqua
         Me.btnEnter.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnEnter.Location = New System.Drawing.Point(36, 372)
         Me.btnEnter.Name = "btnEnter"
@@ -193,7 +206,7 @@ Partial Class AverageUnitsShippedForm
         Me.AcceptButton = Me.btnEnter
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.CancelButton = Me.btnExit
+        Me.CancelButton = Me.btnReset
         Me.ClientSize = New System.Drawing.Size(510, 450)
         Me.Controls.Add(Me.lblTotalAverage)
         Me.Controls.Add(Me.lblEmployee3Average)

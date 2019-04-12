@@ -143,26 +143,26 @@ Public Class AverageUnitsShippedForm
                     If employeeId = 1 Then
                         If weekDay = 1 Then
                             'display the entry in txtDailyUnitsList'
-                            txtEmployee1Display.Text = dailyUnitsShipped(employeeId - 1, weekDay - 1).ToString
+                            txtEmployee1Display.Text = lblDayCounter.Text & ":   " & dailyUnitsShipped(employeeId - 1, weekDay - 1).ToString
                         Else
                             'keep previous entries and add new entry onto new line of textbox'
-                            txtEmployee1Display.Text = txtEmployee1Display.Text & vbCrLf & dailyUnitsShipped(employeeId - 1, weekDay - 1).ToString
+                            txtEmployee1Display.Text = txtEmployee1Display.Text & vbCrLf & lblDayCounter.Text & ":   " & dailyUnitsShipped(employeeId - 1, weekDay - 1).ToString
                         End If
                     ElseIf employeeId = 2 Then
                         If weekDay = 1 Then
                             'display the entry in txtDailyUnitsList'
-                            txtEmployee2Display.Text = dailyUnitsShipped(employeeId - 1, weekDay - 1).ToString
+                            txtEmployee2Display.Text = lblDayCounter.Text & ":   " & dailyUnitsShipped(employeeId - 1, weekDay - 1).ToString
                         Else
                             'keep previous entries and add new entry onto new line of textbox'
-                            txtEmployee2Display.Text = txtEmployee2Display.Text & vbCrLf & dailyUnitsShipped(employeeId - 1, weekDay - 1).ToString
+                            txtEmployee2Display.Text = txtEmployee2Display.Text & vbCrLf & lblDayCounter.Text & ":   " & dailyUnitsShipped(employeeId - 1, weekDay - 1).ToString
                         End If
                     ElseIf employeeId = 3 Then
                         If weekDay = 1 Then
                             'display the entry in txtDailyUnitsList'
-                            txtEmployee3Display.Text = dailyUnitsShipped(employeeId - 1, weekDay - 1).ToString
+                            txtEmployee3Display.Text = lblDayCounter.Text & ":   " & dailyUnitsShipped(employeeId - 1, weekDay - 1).ToString
                         Else
                             'keep previous entries and add new entry onto new line of textbox'
-                            txtEmployee3Display.Text = txtEmployee3Display.Text & vbCrLf & dailyUnitsShipped(employeeId - 1, weekDay - 1).ToString
+                            txtEmployee3Display.Text = txtEmployee3Display.Text & vbCrLf & lblDayCounter.Text & ":   " & dailyUnitsShipped(employeeId - 1, weekDay - 1).ToString
                         End If
                     End If
 
@@ -234,6 +234,33 @@ Public Class AverageUnitsShippedForm
         End If
     End Sub
 
+    Private Sub lblTotalAverage_Click(sender As Object, e As EventArgs) Handles lblTotalAverage.Click
+
+    End Sub
+
+    Private Sub AverageUnitsShippedForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+
+    Private Sub lblEmployee3Average_Click(sender As Object, e As EventArgs) Handles lblEmployee3Average.Click
+
+    End Sub
+
+    Private Sub lblEmployee2Average_Click(sender As Object, e As EventArgs) Handles lblEmployee2Average.Click
+
+    End Sub
+
+    Private Sub lblEmployee1Average_Click(sender As Object, e As EventArgs) Handles lblEmployee1Average.Click
+
+    End Sub
+
+    Private Sub txtEmployee3Display_TextChanged(sender As Object, e As EventArgs) Handles txtEmployee3Display.TextChanged
+
+    End Sub
+
+    Private Sub txtEmployee2Display_TextChanged(sender As Object, e As EventArgs) Handles txtEmployee2Display.TextChanged
+
+    End Sub
 #End Region
 
 End Class
